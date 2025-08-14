@@ -1,0 +1,177 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 5px;
+    height: 20px;
+}
+
+.success-message {
+    background-color: #2ecc71;
+    color: white;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+    text-align: center;
+    transform: translateY(100px) scale(0.8);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.success-message.show {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.success-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-out;
+}
+
+.success-message.show::before {
+    animation: slideDown 0.5s forwards;
+}
+
+@keyframes slideDown {
+    to {
+        transform: translateY(100%);
+    }
+}
+
+/* Confetti styles */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    opacity: 0;
+    animation: confetti 3s ease-in-out forwards;
+    transform-origin: center;
+}
+
+@keyframes confetti {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0);
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) translateX(var(--move-x)) rotate(720deg) scale(1);
+    }
+}
+
+/* Generate different colors and animations for confetti */
+.confetti:nth-child(5n) { background: #ff0; animation-delay: 0.1s; }
+.confetti:nth-child(5n+1) { background: #f0f; animation-delay: 0.2s; }
+.confetti:nth-child(5n+2) { background: #0ff; animation-delay: 0.3s; }
+.confetti:nth-child(5n+3) { background: #0f0; animation-delay: 0.4s; }
+.confetti:nth-child(5n+4) { background: #00f; animation-delay: 0.5s; }
+
+/* Add red border to invalid fields */
+input.invalid,
+textarea.invalid {
+    border-color: #e74c3c;
+}
